@@ -1,0 +1,21 @@
+{
+    "name": "%_qqp",
+    "training": {
+        "dataset": "json"
+    },
+    "json_dataset": {
+        "path": "qqp-clusters",
+        "field_map": [
+            {
+                "type": "sample",
+                "from": "qs",
+                "to": "s1"
+            },
+            {
+                "type": "sample",
+                "from": "qs",
+                "to": "s2"
+            }
+        ]
+    }
+}

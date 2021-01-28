@@ -1,0 +1,5 @@
+models/
+sepenv/
+data/
+*.pyc
+*.DS_Store
