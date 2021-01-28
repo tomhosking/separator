@@ -80,6 +80,17 @@ class MLPClassifier(torch.nn.Module):
         outputs = self.linear3(outputs)
         return outputs.reshape(-1, self.num_heads, self.output_dim)
 
+    def predict(self, encodings):
+        vq_code = []
+        for X in encodings:
+
+            inputs = Variable(torch.tensor([X])).cuda()
+
+            outputs = model(inputs)[0]
+            predicted = torch.argmax(torch.softmax(outputs, -1), -1)
+
+            vq_codes.append(predicted[0].cpu().tolist())
+        return vq_codes
 
 
 os.makedirs(args.output_path, exist_ok=True)
