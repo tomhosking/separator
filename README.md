@@ -7,12 +7,11 @@ First, install [TorchSeq](https://github.com/tomhosking/torchseq/tree/separator-
 
 ```
 python -m pip install -r requirements.txt
-python -m nltk.downloader punkt
 ```
 
-## Running the demo
+## Example
 
-Here's a snippet to run Separator on a new dataset:
+Here's a snippet to run Separator with oracle exemplars:
 
 ```
 import json
@@ -59,11 +58,34 @@ print(pred_output)
 ```
 > ['how many kilograms is a moose?', 'what is the weight of a moose?']
 
-
+There are more examples in `examples/`.
 
 ## Training a model
 
-`torchseq --train --config ./configs/model_config.json`
+You can train a predefined model using:
+
+`torchseq --train --config ./configs/separator-wa.json`
+
+To use a different dataset, have a look at the patches, eg `configs/patches/qqp.json`, then run:
+
+`torchseq --train --config ./configs/separator-wa.json --patch ./config/patches/qqp.json`
+
+
+## Dataset generation commands
+
+Build the training triples:
+
+```
+python3 ./scripts/generate_3way_wikianswers.py  --use_diff_templ_for_sem --rate 1.0 --sample_size 5 --extended_stopwords  --real_exemplars --template_dropout 0.3 --resample --dataset qqp-clusters
+python3 ./scripts/generate_3way_wikianswers.py  --use_diff_templ_for_sem --rate 1.0 --sample_size 5 --extended_stopwords  --real_exemplars --template_dropout 0.3 --resample --dataset wa-triples
+```
+
+Train the code prediction MLP:
+
+```
+python3 ./scripts/train_vq_code_predictor.py --codebook_size 256 --train --dataset wikianswers --model_path ./models/separator-wa/
+python3 ./scripts/train_vq_code_predictor.py --codebook_size 256 --train --dataset qqp --model_path ./models/separator-qqp/
+```
 
 ## Citation
 
