@@ -7,7 +7,7 @@ This repo contains the code for the paper "Factorising Meaning and Form for Inte
 
 ## Installing
 
-First, install [TorchSeq](https://github.com/tomhosking/torchseq/tree/separator-v1) and download the models/data:
+First, install [TorchSeq](https://github.com/tomhosking/torchseq/) and download the models/data:
 
 ```
 python -m pip install -r requirements.txt
