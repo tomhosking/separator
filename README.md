@@ -1,4 +1,4 @@
-# Separator
+# Factorising Meaning and Form for Intent-Preserving Paraphrasing
 
 This repo contains the code for the paper "Factorising Meaning and Form for Intent-Preserving Paraphrasing", Tom Hosking & Mirella Lapata (ACL 2021).
 
