@@ -3,7 +3,7 @@
 
 
 
-![Model diagram](https://raw.githubusercontent.com/tomhosking/separator/main/images/pipeline.png)
+![Model diagram](/images/pipeline.png?raw=true)
 
 
 ## Installing
