@@ -21,6 +21,8 @@ python -m pip install -r requirements.txt
 
 [Download a pretrained checkpoint for QQP](http://tomho.sk/models/separator/separator_qqp.zip)
 
+Model zip files should be unzipped into `./models`, eg `./models/separator-qqp-v1.2`. Data zip files should be unzipped into `./data/`.
+
 ## Replicating our results
 
 This is pretty straightforward, just run:
@@ -28,7 +30,7 @@ This is pretty straightforward, just run:
 `torchseq --load ./models/separator-qqp-v1.2 --test`
 or `torchseq --load ./models/separator-qqp-v1.2 --test`
 
-Replace `--test` with `-validate` to get results on the dev set.
+Replace `--test` with `--validate` to get results on the dev set.
 
 Once it has finished, check the output folder in `./runs` - the `sepae_codepred_bleu/sepae_codepred_selfbleu` scores in `metrics.json` will allow you to calculate the iBLEU scores.
 
@@ -95,6 +97,10 @@ There are more examples in `examples/`.
 You can train a predefined model using:
 
 `torchseq --train --config ./configs/separator-wa.json`
+
+or 
+
+`torchseq --train --config ./configs/separator-qqp.json`
 
 ## Training a model on a custom dataset
 
