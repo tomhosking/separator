@@ -100,7 +100,7 @@ You can train a predefined model using:
 
 To use a different dataset, you will need to generate a total of 4 datasets. These should be folders in `./data`, containing `{train,dev,test}.jsonl` files.
 
-*A cluster dataset, that is a list of the paraphrase clusters*
+#### A cluster dataset, that is a list of the paraphrase clusters
 
 ```
 {"qs": ["What are some good science documentaries?", "What is a good documentary on science?", "What is the best science documentary you have ever watched?", "Can you recommend some good documentaries in science?", "What the best science documentaries?"]}
@@ -108,7 +108,7 @@ To use a different dataset, you will need to generate a total of 4 datasets. The
 ...
 ```
 
-*A flattened dataset, that is just a list of all the paraphrases*
+#### A flattened dataset, that is just a list of all the paraphrases
 
 ```
 {"q": "Can you recommend some good documentaries in science?"}
@@ -117,7 +117,7 @@ To use a different dataset, you will need to generate a total of 4 datasets. The
 ...
 ```
 
-*The training triples*
+#### The training triples
 
 Generate this using the following command:
 
@@ -128,7 +128,7 @@ python3 ./scripts/generate_3way_wikianswers.py  --use_diff_templ_for_sem --rate 
 Replace qqp-clusters with the path to your dataset in "cluster" format.
 
 
-*A dataset to use for evaluation*
+#### A dataset to use for evaluation
 
 For each cluster, select a single sentence to use as the input (assigned to `sem_input`) and add all the other references to `paras`. `tgt` and `syn_input` should be set to one of references.
 
