@@ -14,8 +14,11 @@ python -m pip install -r requirements.txt
 ```
 
 [Download our split of Paralex](http://tomho.sk/models/separator/data_paralex.zip)
+
 [Download our split of QQP](http://tomho.sk/models/separator/data_qqp.zip)
+
 [Download a pretrained checkpoint for Paralex](http://tomho.sk/models/separator/separator_paralex.zip)
+
 [Download a pretrained checkpoint for QQP](http://tomho.sk/models/separator/separator_qqp.zip)
 
 ## Replicating our results
@@ -100,21 +103,17 @@ To use a different dataset, you will need to generate a total of 4 datasets. The
 *A cluster dataset, that is a list of the paraphrase clusters*
 
 ```
-[
-    ["",""],
-    ["",""],
-    ...
-]
+{"qs": ["What are some good science documentaries?", "What is a good documentary on science?", "What is the best science documentary you have ever watched?", "Can you recommend some good documentaries in science?", "What the best science documentaries?"]}
+{"qs": ["What do we use water for?", "Why do we, as human beings, use water for?"]}
+...
 ```
 
 *A flattened dataset, that is just a list of all the paraphrases*
 
 ```
-[
-    "Paraphrase 1",
-    "Paraphrase 2",
-    ...
-]
+{"q": "Can you recommend some good documentaries in science?"}
+{"q": "What the best science documentaries?"}
+{"q": "What do we use water for?"}
 ```
 
 *The training triples*
@@ -130,9 +129,12 @@ Replace qqp-clusters with the path to your dataset in "cluster" format.
 
 *A dataset to use for evaluation*
 
-Each paraphrase cluster should be split so that there is an input sentence, and reference paraphrases of that input
+For each cluster, select a single sentence to use as the input (assigned to `sem_input`) and add all the other references to `paras`. `tgt` and `syn_input` should be set to one of references.
 
 ```
+{"tgt": "What are some good science documentaries?", "syn_input": "What are some good science documentaries?", "sem_input": "Can you recommend some good documentaries in science?", "paras": ["What are some good science documentaries?", "What the best science documentaries?", "What is the best science documentary you have ever watched?", "What is a good documentary on science?"]}
+{"tgt": "What do we use water for?", "syn_input": "What do we use water for?", "sem_input": "Why do we, as human beings, use water for?", "paras": ["What do we use water for?"]}
+
 ```
 
 *Train the model*
