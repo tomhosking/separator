@@ -114,6 +114,7 @@ To use a different dataset, you will need to generate a total of 4 datasets. The
 {"q": "Can you recommend some good documentaries in science?"}
 {"q": "What the best science documentaries?"}
 {"q": "What do we use water for?"}
+...
 ```
 
 *The training triples*
@@ -134,7 +135,7 @@ For each cluster, select a single sentence to use as the input (assigned to `sem
 ```
 {"tgt": "What are some good science documentaries?", "syn_input": "What are some good science documentaries?", "sem_input": "Can you recommend some good documentaries in science?", "paras": ["What are some good science documentaries?", "What the best science documentaries?", "What is the best science documentary you have ever watched?", "What is a good documentary on science?"]}
 {"tgt": "What do we use water for?", "syn_input": "What do we use water for?", "sem_input": "Why do we, as human beings, use water for?", "paras": ["What do we use water for?"]}
-
+...
 ```
 
 *Train the model*
