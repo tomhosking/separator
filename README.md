@@ -138,7 +138,7 @@ For each cluster, select a single sentence to use as the input (assigned to `sem
 ...
 ```
 
-*Train the model*
+#### Train the model
 
 Have a look at the patches, eg `configs/patches/qqp.json`, and create a patch that points to your dataset, then run:
 
