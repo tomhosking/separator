@@ -1,10 +1,10 @@
 {
-    "name": "%_qqp",
+    "name": "%_paralex",
     "training": {
         "dataset": "json"
     },
     "json_dataset": {
-        "path": "training-triples/qqp-triples-chunk-extendstop-realexemplars-resample-drop30-N5-R100",
+        "path": "training-triples/wikianswers-triples-chunk-extendstop-realexemplars-resample-drop30-N5-R100",
         "field_map": [
             {
                 "from": "syn_input",
@@ -23,9 +23,9 @@
     "eval": {
         "metrics": {
             "sep_ae": {
-                "eval_dataset": "qqp-splitforgeneval",
-                "flattened_dataset": "qqp-allqs",
-                "cluster_dataset": "qqp-clusters"
+                "eval_dataset": "wikianswers-para-splitforgeneval",
+                "flattened_dataset": "wikianswers-para-allqs",
+                "cluster_dataset": "wikianswers-pp"
             }
         }
     }
