@@ -1,2 +1,2 @@
-git+https://github.com/tomhosking/torchseq.git
+git+https://github.com/tomhosking/torchseq.git@releases/tag/separator-v1.2
 notebook

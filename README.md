@@ -7,7 +7,7 @@ This repo contains the code for the paper "Factorising Meaning and Form for Inte
 
 ## Installing
 
-First, install [TorchSeq](https://github.com/tomhosking/torchseq/) and download the models/data:
+First, install [TorchSeq](https://github.com/tomhosking/torchseq/releases/tag/separator-v1.2) and other dependencies using the following command:
 
 ```
 python -m pip install -r requirements.txt
@@ -23,12 +23,14 @@ python -m pip install -r requirements.txt
 
 Model zip files should be unzipped into `./models`, eg `./models/separator-qqp-v1.2`. Data zip files should be unzipped into `./data/`.
 
+Note: Paralex was originally scraped from WikiAnswers, so many of the Paralex models and datasets are labelled as 'wa' or WikiAnswers.
+
 ## Replicating our results
 
 This is pretty straightforward, just run:
 
 `torchseq --load ./models/separator-qqp-v1.2 --test`
-or `torchseq --load ./models/separator-qqp-v1.2 --test`
+or `torchseq --load ./models/separator-wa-v1.2 --test`
 
 Replace `--test` with `--validate` to get results on the dev set.
 
@@ -96,11 +98,11 @@ There are more examples in `examples/`.
 
 You can train a predefined model using:
 
-`torchseq --train --config ./configs/separator-wa.json`
+`torchseq --train --config ./configs/separator_wa.json`
 
 or 
 
-`torchseq --train --config ./configs/separator-qqp.json`
+`torchseq --train --config ./configs/separator_qqp.json`
 
 ## Training a model on a custom dataset
 
