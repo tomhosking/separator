@@ -155,4 +155,13 @@ Have a look at the patches, eg `configs/patches/qqp.json`, and create a patch th
 
 ## Citation
 
-TBC
+```
+@misc{hosking2021factorising,
+      title={Factorising Meaning and Form for Intent-Preserving Paraphrasing}, 
+      author={Tom Hosking and Mirella Lapata},
+      year={2021},
+      eprint={2105.15053},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
