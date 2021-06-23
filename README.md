@@ -13,7 +13,7 @@ First, install [TorchSeq](https://github.com/tomhosking/torchseq/releases/tag/se
 python -m pip install -r requirements.txt
 ```
 
-[Download our split of Paralex](http://tomho.sk/models/separator/data_paralex.zip)
+<a href="http://tomho.sk/models/separator/data_paralex.zip" >Download our split of Paralex</a>
 
 [Download our split of QQP](http://tomho.sk/models/separator/data_qqp.zip)
 
