@@ -15,11 +15,11 @@ python -m pip install -r requirements.txt
 
 <a href="http://tomho.sk/models/separator/data_paralex.zip" >Download our split of Paralex</a>
 
-[Download our split of QQP](http://tomho.sk/models/separator/data_qqp.zip)
+<a href="http://tomho.sk/models/separator/data_qqp.zip">Download our split of QQP</a>
 
-[Download a pretrained checkpoint for Paralex](http://tomho.sk/models/separator/separator_paralex.zip)
+<a href="http://tomho.sk/models/separator/separator_paralex.zip">Download a pretrained checkpoint for Paralex</a>
 
-[Download a pretrained checkpoint for QQP](http://tomho.sk/models/separator/separator_qqp.zip)
+<a href="http://tomho.sk/models/separator/separator_qqp.zip">Download a pretrained checkpoint for QQP</a>
 
 Model zip files should be unzipped into `./models`, eg `./models/separator-qqp-v1.2`. Data zip files should be unzipped into `./data/`.
 
