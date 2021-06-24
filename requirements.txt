@@ -1,2 +1,2 @@
-git+https://github.com/tomhosking/torchseq.git@9e2e021bc209003b4f7a75dd6450d760cb5e0ea9
+git+https://github.com/tomhosking/torchseq.git@separator-v1.2
 notebook
