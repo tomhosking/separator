@@ -156,12 +156,16 @@ Have a look at the patches, eg `configs/patches/qqp.json`, and create a patch th
 ## Citation
 
 ```
-@misc{hosking2021factorising,
-      title={Factorising Meaning and Form for Intent-Preserving Paraphrasing}, 
-      author={Tom Hosking and Mirella Lapata},
-      year={2021},
-      eprint={2105.15053},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@inproceedings{hosking-lapata-2021-factorising,
+    title = "Factorising Meaning and Form for Intent-Preserving Paraphrasing",
+    author = "Hosking, Tom  and
+      Lapata, Mirella",
+    booktitle = "Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.acl-long.112",
+    pages = "1405--1418",
 }
 ```
