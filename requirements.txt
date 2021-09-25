@@ -1,2 +1,3 @@
 git+https://github.com/tomhosking/torchseq.git@separator-v1.2
 notebook
+flair

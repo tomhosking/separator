@@ -118,6 +118,8 @@ To use a different dataset, you will need to generate a total of 4 datasets. The
 
 #### A flattened dataset, that is just a list of all the paraphrases
 
+The sentences must be in the same order as in the cluster dataset!
+
 ```
 {"q": "Can you recommend some good documentaries in science?"}
 {"q": "What the best science documentaries?"}

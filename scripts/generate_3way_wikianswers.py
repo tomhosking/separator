@@ -10,9 +10,6 @@ from copy import deepcopy
 
 
 import torch
-from allennlp.predictors.predictor import Predictor
-import allennlp_models.structured_prediction
-from allennlp.models.archival import load_archive
 # predictor = Predictor.from_archive(load_archive("https://storage.googleapis.com/allennlp-public-models/elmo-constituency-parser-2020.02.10.tar.gz"))
 
 import argparse
@@ -69,6 +66,10 @@ np.random.seed(args.seed)
 if args.pos_templates:
     tagger = SequenceTagger.load('pos')
 elif args.constit_templates:
+
+    from allennlp.predictors.predictor import Predictor
+    import allennlp_models.structured_prediction
+    from allennlp.models.archival import load_archive
     predictor = Predictor.from_archive(
         load_archive("https://storage.googleapis.com/allennlp-public-models/elmo-constituency-parser-2020.02.10.tar.gz",
         cuda_device=torch.cuda.current_device()),
@@ -90,7 +91,7 @@ if args.dataset == 'wa-triples':
 else:
     dataset = args.dataset
 
-modifiers = dataset
+modifiers = "__".join(dataset.split('/'))
 cache_key = 'cache'
 
 if args.debug:
@@ -135,7 +136,7 @@ if not args.use_diff_templ_for_sem:
 
 name_slug = f"{modifiers}-N{SAMPLES_PER_CLUSTER}-R{rate_str}"
 
-os.makedirs(os.path.join(args.data_dir, f'wa-triples/{name_slug}/'), exist_ok=True)
+os.makedirs(os.path.join(args.data_dir, f'{name_slug}/'), exist_ok=True)
 
 
 stopwords = []
@@ -247,7 +248,7 @@ for split in splits:
     samples = []
     rebuild_cache = True
 
-    cache_file = os.path.join(args.data_dir, f"wa-triples-cache/{cache_key}_{split}.json")
+    cache_file = os.path.join(args.data_dir, f"{dataset}-cache/{cache_key}_{split}.json")
     if os.path.exists(cache_file):
         print("Loading from cache")
         with open(cache_file) as f:
@@ -309,7 +310,7 @@ for split in splits:
         vocab_by_pos_size = {tag: sum([x[1] for x in vocab]) for tag,vocab in vocab_by_pos.items()}
         vocab_by_pos = {tag: [(x[0],x[1]/vocab_by_pos_size[tag]) for x in vocab] for tag,vocab in vocab_by_pos.items()}
 
-        os.makedirs(os.path.join(args.data_dir, "wa-triples-cache/"), exist_ok=True)
+        os.makedirs(os.path.join(args.data_dir, f"{dataset}-cache/"), exist_ok=True)
         with open(cache_file, "w") as f:
             json.dump({
                 "vocab_by_pos": vocab_by_pos,
@@ -409,5 +410,5 @@ for split in splits:
             break
 #     break
     
-    with jsonlines.open(f'./data/wa-triples/{name_slug}/{split}.jsonl','w') as f:
+    with jsonlines.open(f'{args.data_dir}/{name_slug}/{split}.jsonl','w') as f:
         f.write_all(samples)
