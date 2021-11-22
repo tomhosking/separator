@@ -25,6 +25,7 @@ parser.add_argument(
  "--dataset", type=str, metavar="PATH", default='wa-triples', help="Source dataset"
 )
 
+
 parser.add_argument("--debug", action="store_true", help="Debug mode")
 parser.add_argument("--pos_templates", action="store_true", help="Use POS tags for templating")
 parser.add_argument("--constit_templates", action="store_true", help="Use constituency parses for templating")
@@ -142,10 +143,10 @@ os.makedirs(os.path.join(args.data_dir, f'{name_slug}/'), exist_ok=True)
 stopwords = []
 tags_to_preserve = []
 if not args.no_stopwords:
-    if args.extended_stopwords:
+    stopwords += ['who','what','when','where', 'why','how', 'many', 'which']
+if args.extended_stopwords:
         tags_to_preserve += ['.','WP','IN','$','``',"''",'DT','PRP','SYM',':']
         stopwords += ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that', 'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now']
-    stopwords += ['who','what','when','where', 'why','how', 'many', 'which']
 # tags_to_preserve = ['.','WP','IN','$','``',"''",'DT','PRP','SYM',':']
 
 
@@ -273,7 +274,7 @@ for split in splits:
         for cix,cluster in enumerate(tqdm(all_clusters)):
             cluster_parses = []
             cluster_tokenised = []
-            for q in cluster['qs']:
+            for q in (cluster['qs'] if 'qs' in cluster else cluster['paraphrases']):
                 if args.constit_templates:
                     res = predictor.predict_batch_json(
                     inputs=[{'sentence': q}]
@@ -321,7 +322,7 @@ for split in splits:
     
     
     
-    max_cluster_len = max([len(c['qs']) for c in all_clusters])
+    max_cluster_len = max([len(c['qs'] if 'qs' in c else c['paraphrases']) for c in all_clusters])
     max_q_len = max([len(toks) for c in tokenised for toks in c])
     max_vocab_size = max([len(voc) for voc in vocab_by_pos.values()])
 
@@ -334,7 +335,7 @@ for split in splits:
     # num_samples = SAMPLES_PER_CLUSTER if split == 'train' else 1
 
     for cix,row in enumerate(tqdm(all_clusters)):
-        cluster = row['qs']
+        cluster = row['qs'] if 'qs' in row else row['paraphrases']
 
         sample_size = SAMPLES_PER_CLUSTER if args.resample_cluster else min(SAMPLES_PER_CLUSTER, len(cluster)-1)
         for i in range(sample_size):
