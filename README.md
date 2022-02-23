@@ -27,14 +27,9 @@ Note: Paralex was originally scraped from WikiAnswers, so many of the Paralex mo
 
 ## Replicating our results
 
-This is pretty straightforward, just run:
+The evaluation setup used for the paper had a small bug - the references were not lowercased before calculating BLEU scores, leading to lower BLEU and self-BLEU scores for QQP (Paralex is already lowercased so not affected). The overall ranking of systems should not be affected.
 
-`torchseq --load ./models/separator-qqp-v1.2 --test`
-or `torchseq --load ./models/separator-wa-v1.2 --test`
-
-Replace `--test` with `--validate` to get results on the dev set.
-
-Once it has finished, check the output folder in `./runs` - the `sepae_codepred_bleu/sepae_codepred_selfbleu` scores in `metrics.json` will allow you to calculate the iBLEU scores.
+The easiest way to replicate both cased (as per the paper) and uncased (the correct method) is using the code snippet in `./examples/Replication-QQP.ipynb`. Change the model and dataset paths to evaluate on Paralex.
 
 ## Run inference over a custom dataset
 
@@ -68,6 +63,7 @@ cfg_dict["json_dataset"] = {
     "field_map": [
         {"type": "copy", "from": "input", "to": "s2"},
         {"type": "copy", "from": "input", "to": "s1"},
+        {"type": "copy", "from": "input", "to": "template"},
     ],
 }
 
