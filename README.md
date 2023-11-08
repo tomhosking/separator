@@ -1,6 +1,6 @@
-# Factorising Meaning and Form for Intent-Preserving Paraphrasing
+# [Factorising Meaning and Form for Intent-Preserving Paraphrasing](https://aclanthology.org/2021.acl-long.112/)
 
-This repo contains the code for the paper "Factorising Meaning and Form for Intent-Preserving Paraphrasing", Tom Hosking & Mirella Lapata (ACL 2021).
+This repo contains the code for the paper "[Factorising Meaning and Form for Intent-Preserving Paraphrasing](https://aclanthology.org/2021.acl-long.112/)", Tom Hosking & Mirella Lapata (ACL 2021).
 
 ![Model diagram](/images/pipeline.png?raw=true)
 
